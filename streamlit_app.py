@@ -1,6 +1,7 @@
 import streamlit
 import pandas
 
+
 streamlit.title("This is a test")
 streamlit.header('🍌🥭 Build Your Own Fruit Smoothie 🥝🍇')
 streamlit.header('Breakfast Menu')
@@ -16,3 +17,9 @@ fruits_to_show = my_fruit_list.loc[fruits_selected]
 
 # display fruits
 streamlit.dataframe(fruits_to_show)
+
+# display api request response 
+import requests
+
+fruityvice_response = response.get(https://fruityvice.com/api/fruit/watermelon)
+streamlit.text(fruityvice_response)
