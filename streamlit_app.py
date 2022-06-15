@@ -49,7 +49,7 @@ def get_fruit_list():
     my_data_row = my_cur.fetchall()
   return my_data_row
   
-if streamlit.button("add a new fruit to the list"):
+if streamlit.button("View Fruit List"):
   my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
   df = get_fruit_list()
   my_cnx.close()
