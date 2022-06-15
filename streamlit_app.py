@@ -1,7 +1,9 @@
 import streamlit
 import pandas
 import snowflake.connector
-
+# display api request response 
+import requests
+from urllib.error import URLError
 
 streamlit.title("This is a test")
 streamlit.header('🍌🥭 Build Your Own Fruit Smoothie 🥝🍇')
@@ -20,8 +22,7 @@ fruits_to_show = my_fruit_list.loc[fruits_selected]
 streamlit.dataframe(fruits_to_show)
 
 streamlit.header("Fruityvice advice")
-# display api request response 
-import requests
+
 
 #streamlit.text(fruityvice_response.json())
 fruit_choice = streamlit.text_input("select a fruit","kiwi")
@@ -32,8 +33,8 @@ fruityvice_response = requests.get("https://fruityvice.com/api/fruit/"+fruit_cho
 fruityvice_normalized = pandas.json_normalize(fruityvice_response.json())
 streamlit.dataframe(fruityvice_normalized)
 
-streamlit.stop();
 
+streamlit.stop();
 my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
 my_cur = my_cnx.cursor()
 my_cur.execute("SELECT * from pc_rivery_db.public.fruit_load_list")
